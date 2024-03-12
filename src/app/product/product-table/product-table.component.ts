@@ -14,22 +14,13 @@ export class ProductTableComponent implements OnInit{
   @Output() deleteRowItem = new EventEmitter<any>();
   @Output() editRowItem = new EventEmitter<any>();
 
-  products: any = [];
-  productsBE: any = [];
-  cols: any = [];
+  products: Object[] = [];
+  cols: Object[] = [];
 
   ngOnInit() {
-    /*
-     this.productService.getProducts().subscribe((products)=>{
-      this.products = products;
+    this.productService.getProducts().subscribe(data => {
+      this.products = data;
     });
-     this.productService.getColumns().subscribe((cols)=>{
-      this.cols = cols;
-    });
-     */
-    this.products = this.productService.getProducts();
-    this.productsBE = this.productService.getProductsAPI();
-    console.log(this.productsBE);
     this.cols = this.productService.getColumns();
   }
 
