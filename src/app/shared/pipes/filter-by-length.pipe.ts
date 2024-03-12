@@ -1,23 +1,20 @@
-import {Directive, ElementRef, HostListener, Input} from '@angular/core';
-
-@Directive({
+import { Pipe, PipeTransform } from '@angular/core';
+@Pipe({
   standalone: true,
-  selector: '[appHighlight]',
+  name: 'filterByLength'
 })
-export class HighlightDirective {
-
-  @Input() appHighlight = '';
-  constructor(private el: ElementRef) {}
-
-  @HostListener('mouseenter') onMouseEnter() {
-    this.highlight(this.appHighlight);
-  }
-
-  @HostListener('mouseleave') onMouseLeave() {
-    this.highlight('');
-  }
-
-  private highlight(color: string) {
-    this.el.nativeElement.style.backgroundColor = color;
+export class FilterByLengthPipe implements PipeTransform {
+  transform(values: string[], minLength?: number, maxLength?: number): string[] {
+    if(minLength && maxLength){
+      return values.filter(value => value.length >= minLength && value.length <= maxLength)
+    }
+    if(minLength){
+      return values.filter(value => value.length >= minLength);
+    }
+    else if(maxLength){
+      return values.filter(value => value.length <= maxLength);
+    } else {
+      return values;
+    }
   }
 }

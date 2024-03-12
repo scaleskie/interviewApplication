@@ -1,20 +1,19 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-
-import { AppComponent } from './app.component';
-import {UpcomingEventsComponent} from "./events/upcoming-events/upcoming-events.component";
-import {ArchivedEventsComponent} from "./events/archived-events/archived-events.component";
+import { AppComponent } from '../app.component';
+import {UpcomingEventsComponent} from "./upcoming-events/upcoming-events.component";
+import {ArchivedEventsComponent} from "./archived-events/archived-events.component";
 import {
   CreateUpcomingEventComponent
-} from "./events/upcoming-events/create-upcoming-event/create-upcoming-event.component";
+} from "./upcoming-events/create-upcoming-event/create-upcoming-event.component";
 import {
   DeleteUpcomingEventComponent
-} from "./events/upcoming-events/delete-upcoming-event/delete-upcoming-event.component";
+} from "./upcoming-events/delete-upcoming-event/delete-upcoming-event.component";
 import {EventsRoutingModule} from "./events-routing.module";
 import {
   UpcomingEventsTableComponent
-} from "./events/upcoming-events/upcoming-events-table/upcoming-events-table.component";
+} from "./upcoming-events/upcoming-events-table/upcoming-events-table.component";
 import {TableModule} from "primeng/table";
+import {SharedModule} from "../shared/modules/shared.module";
 
 @NgModule({
   declarations: [
@@ -25,9 +24,8 @@ import {TableModule} from "primeng/table";
     UpcomingEventsTableComponent
   ],
   imports: [
-    BrowserModule,
     EventsRoutingModule,
-    TableModule
+    SharedModule
   ],
   exports: [
     UpcomingEventsComponent,

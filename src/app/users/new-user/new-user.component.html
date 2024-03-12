@@ -1,0 +1,11 @@
+<div class="field">
+  <label class="block" >First Name</label>
+  <input type="text" placeholder="First Name" pInputText [(ngModel)]="firstName" />
+  <label class="block">Last Name</label>
+  <input type="text" placeholder="Last Name"  pInputText [(ngModel)]="lastName" />
+</div>
+<p-button label="Submit" [disabled]="!firstName || !lastName" (click)="submit()"></p-button>
+
+<div *ngIf="showName">
+ Name Submitted: {{firstName}} {{lastName}}
+</div>

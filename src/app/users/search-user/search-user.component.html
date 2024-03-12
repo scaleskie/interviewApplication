@@ -1,0 +1,92 @@
+<div class="field">
+  <label class="block" >First Name</label>
+  <input
+    type="text"
+    id="name"
+    name="name"
+    class="form-control"
+    required
+    minlength="4"
+    appForbiddenEntry="Jimmy"
+    [(ngModel)]="enteredName"
+    #name="ngModel"
+  />
+  <div
+    *ngIf="name.invalid && (name.dirty || name.touched)"
+    class="alert"
+  >
+    <div *ngIf="name.errors?.['required']">Name is required.</div>
+    <div *ngIf="name.errors?.['minlength']">
+      Name must be at least 4 characters long.
+    </div>
+    <div *ngIf="name.errors?.['forbiddenEntry']">
+      Name cannot be Jimmy.
+    </div>
+  </div>
+
+  <label class="block">Enter Number</label>
+  <input
+    type="text"
+    id="number"
+    name="number"
+    class="form-control"
+    required
+    minlength="1"
+    appForbiddenEntry="123"
+    [(ngModel)]="enteredNumber"
+    #number="ngModel"
+  />
+  <div
+    *ngIf="number.invalid && (number.dirty || number.touched)"
+    class="alert"
+  >
+    <div *ngIf="number.errors?.['required']">Number is required.</div>
+    <div *ngIf="number.errors?.['minlength']">
+      Number must be at least 1 characters long.
+    </div>
+    <div *ngIf="number.errors?.['forbiddenEntry']">
+      Number can not be 123.
+    </div>
+  </div>
+
+
+  <label class="block">Enter Phone Number</label>
+  <input
+    type="text"
+    id="phoneNumber"
+    name="phoneNumber"
+    class="form-control"
+    required
+    minlength="5"
+    appForbiddenEntry="304-845-1246"
+    [(ngModel)]="enteredPhoneNumber"
+    #phoneNumber="ngModel"
+  />
+  <div
+    *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)"
+    class="alert"
+  >
+    <div *ngIf="phoneNumber.errors?.['required']">Phone Number is required.</div>
+    <div *ngIf="phoneNumber.errors?.['minlength']">
+      Number must be at least 5 characters long.
+    </div>
+    <div *ngIf="phoneNumber.errors?.['forbiddenEntry']">
+      Phone Number can not be 304-845-1246.
+    </div>
+  </div>
+</div>
+
+
+<p [appHighlight]="'blue'">Show directive and mouseover event usage</p>
+
+<p> Uppercase: {{ pipeString | uppercase}} </p>
+<p> Titlecase: {{ pipeString | titlecase}} </p>
+
+<p> Minimum Length: 4 </p>
+<p *ngFor="let value of pipeArray | filterByLength: 4">{{ value }}</p>
+
+<p> Maximum Length: 3 </p>
+<p *ngFor="let value of pipeArray | filterByLength: undefined:3">{{ value }}</p>
+
+<p> Maximum Length: 9 and Minimum Length: 6 </p>
+<p *ngFor="let value of pipeArray | filterByLength: 6:9">{{ value }}</p>

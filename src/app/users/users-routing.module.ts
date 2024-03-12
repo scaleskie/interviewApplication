@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {NewOrdersComponent} from "./new-orders/new-orders.component";
-import {EditOrdersComponent} from "./edit-orders/edit-orders.component";
-import {DeleteOrdersComponent} from "./delete-orders/delete-orders.component";
+import {NewUserComponent} from "./new-user/new-user.component";
+import {DeleteUserComponent} from "./delete-user/delete-user.component";
+import {SearchUserComponent} from "./search-user/search-user.component";
 
 const routes: Routes = [
-  { path: 'new-orders', component: NewOrdersComponent },
-  { path: 'edit-orders', component: EditOrdersComponent },
-  { path: 'delete-orders', component: DeleteOrdersComponent }
+  { path: 'new-user', component: NewUserComponent },
+  { path: 'delete-user', component: DeleteUserComponent },
+  { path: 'search-user', component: SearchUserComponent }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class OrdersRoutingModule { }
+export class UsersRoutingModule { }

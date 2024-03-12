@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 
-import { AppComponent } from '../app.component';
+import { AppComponent } from '../../app.component';
 import {TableModule} from "primeng/table";
 import {CommonModule} from "@angular/common";
 import {DialogModule} from "primeng/dialog";
@@ -11,7 +11,9 @@ import {AvatarModule} from "primeng/avatar";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {InputTextModule} from "primeng/inputtext";
 import {CardModule} from "primeng/card";
-import {ForbiddenEntryValidatorDirective} from "./invalid-entry.directive";
+import {ForbiddenEntryValidatorDirective} from "../directives/invalid-entry.directive";
+import {HighlightDirective} from "../directives/highlight.directive";
+import {FilterByLengthPipe} from "../pipes/filter-by-length.pipe";
 @NgModule({
   declarations: [
   ],
@@ -29,7 +31,9 @@ import {ForbiddenEntryValidatorDirective} from "./invalid-entry.directive";
     ButtonModule,
     ReactiveFormsModule,
     CardModule,
-    ForbiddenEntryValidatorDirective
+    ForbiddenEntryValidatorDirective,
+    HighlightDirective,
+    FilterByLengthPipe
   ],
   exports: [
     CommonModule,
@@ -45,7 +49,9 @@ import {ForbiddenEntryValidatorDirective} from "./invalid-entry.directive";
     ButtonModule,
     ReactiveFormsModule,
     CardModule,
-    ForbiddenEntryValidatorDirective
+    ForbiddenEntryValidatorDirective,
+    HighlightDirective,
+    FilterByLengthPipe
   ],
   bootstrap: [AppComponent]
 })

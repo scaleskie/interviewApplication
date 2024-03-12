@@ -1,0 +1,26 @@
+<h3>Product</h3>
+<app-product-table (rowItem)="passItem($event)"
+                   (deleteRowItem)="deleteItem($event)"
+                   (editRowItem)="editItem($event)"
+></app-product-table>
+
+
+<div class="unit-test" *ngIf="(itemPassed || itemDeleted) && item">
+  <p-dialog header="Selected Item from Child:" [(visible)]="itemPassed && item" [style]="{width: '50vw'}">
+    <p>
+     <b>Code:</b> {{item.code}}
+    </p>
+    <p>
+      <b>Name:</b> {{item.name}}
+    </p>
+  </p-dialog>
+
+  <p-dialog header="Deleted Item from Child:" [(visible)]="itemDeleted && item" [style]="{width: '50vw'}">
+    <p>
+      <b>Code:</b> {{item.code}}
+    </p>
+    <p>
+      <b>Name:</b> {{item.name}}
+    </p>
+  </p-dialog>
+</div>
