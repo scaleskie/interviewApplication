@@ -1,0 +1,4 @@
+<label class="block">Filter by Name</label>
+<input type="text" pInputText placeholder="First Name" [(ngModel)]="filterName" />
+<p-button label="Submit" [disabled]="!filterName" (click)="filter()"></p-button>
+

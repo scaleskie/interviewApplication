@@ -1,7 +1,9 @@
 <h3>Product</h3>
-<app-product-table (rowItem)="passItem($event)"
+<app-product-table-filters [products]="products" (filteredProducts)="filteredProducts($event)"></app-product-table-filters>
+<app-product-table (viewRowItem)="viewRowItem($event)"
                    (deleteRowItem)="deleteItem($event)"
                    (editRowItem)="editItem($event)"
+                   [products]="products"
 ></app-product-table>
 
 

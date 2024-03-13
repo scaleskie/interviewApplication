@@ -1,5 +1,6 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ProductService} from "../product.service";
+import {Product} from "../product";
 
 @Component({
   selector: 'app-product-table',
@@ -9,32 +10,37 @@ import {ProductService} from "../product.service";
 export class ProductTableComponent implements OnInit{
   constructor(private productService: ProductService) {
   }
-
-  @Output() rowItem = new EventEmitter<any>();
+  @Input() products: Product[] = [];
+  @Output() viewRowItem = new EventEmitter<any>();
   @Output() deleteRowItem = new EventEmitter<any>();
   @Output() editRowItem = new EventEmitter<any>();
 
-  products: Object[] = [];
+  filterName = null;
   cols: Object[] = [];
 
   ngOnInit() {
-    this.productService.getProducts().subscribe(data => {
-      this.products = data;
-    });
     this.cols = this.productService.getColumns();
   }
-
-   passRowData(rowData: any){
-     this.rowItem.emit(rowData)
+   viewRowData(rowData: any){
+     this.viewRowItem.emit(rowData)
    }
 
   deleteRowData(rowData: any){
-    this.products = this.productService.deleteItem(rowData);
-    this.deleteRowItem.emit(rowData)
-  }
-  editRowData(rowData: any){
-    this.products = this.productService.editItem(rowData);
-    this.editRowItem.emit(rowData)
+    this.productService.deleteProductByID(rowData.id).subscribe(data => {
+      this.deleteRowItem.emit(rowData)
+    });
   }
 
+  editRowData(rowData: any){
+    this.productService.updateProductByID(rowData).subscribe(data => {
+      this.editRowItem.emit(data)
+    })
+  }
+
+  getSpecificRow(id: number){
+    this.productService.getProductByID(1).subscribe(data => {
+      console.log("get by ID")
+      console.log(data)
+    });
+  }
 }

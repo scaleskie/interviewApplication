@@ -9,7 +9,7 @@
     </ng-template>
     <ng-template pTemplate="body" let-rowData let-columns="columns">
       <tr>
-        <td *ngFor="let col of columns, index as i" (click)="passRowData(rowData)">
+        <td *ngFor="let col of columns, index as i" (click)="viewRowData(rowData)">
           <div *ngIf="i !== columns.length && i !== columns.length-1">
             {{ rowData[col.field] }}
           </div>
