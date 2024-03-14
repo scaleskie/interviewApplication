@@ -17,6 +17,11 @@ export class ProductTableComponent implements OnInit{
 
   filterName = null;
   cols: Object[] = [];
+  editFlag = false;
+  categoryName = '';
+  name = '';
+  quantity = '';
+  newItem: any = {};
 
   ngOnInit() {
     this.cols = this.productService.getColumns();
@@ -31,9 +36,12 @@ export class ProductTableComponent implements OnInit{
     });
   }
 
-  editRowData(rowData: any){
-    this.productService.updateProductByID(rowData).subscribe(data => {
-      this.editRowItem.emit(data)
+  editRowData(){
+    this.newItem.name = this.name;
+    this.newItem.category = this.categoryName;
+    this.newItem.quantity = this.quantity;
+    this.productService.updateProductByID(this.newItem).subscribe(data => {
+      this.editRowItem.emit(this.newItem)
     })
   }
 
@@ -42,5 +50,10 @@ export class ProductTableComponent implements OnInit{
       console.log("get by ID")
       console.log(data)
     });
+  }
+
+  editModal(rowData: any){
+    this.newItem = rowData;
+    this.editFlag = true;
   }
 }

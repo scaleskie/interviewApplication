@@ -14,7 +14,7 @@
             {{ rowData[col.field] }}
           </div>
           <div *ngIf="i === columns.length-2">
-            <div class="pi pi-fw pi-pencil" (click)="editRowData(rowData)" ></div>
+            <div class="pi pi-fw pi-pencil" (click)="editModal(rowData);" ></div>
           </div>
           <div *ngIf="i === columns.length-1">
             <div class="pi pi-fw pi-trash"(click)="deleteRowData(rowData)" ></div>
@@ -24,3 +24,17 @@
     </ng-template>
   </p-table>
 </div>
+
+
+<p-dialog header="Deleted Item from Child:" [(visible)]="editFlag" [style]="{width: '50vw'}">
+  <div class="field">
+    <label class="block" >Category Name</label>
+    <input type="text" placeholder="Edit Category Name" pInputText [(ngModel)]="categoryName" />
+    <label class="block">Name</label>
+    <input type="text" placeholder="Edit Name"  pInputText [(ngModel)]="name" />
+    <label class="block">Quantity</label>
+    <input type="text" placeholder="Edit Quantity"  pInputText [(ngModel)]="quantity" />
+    <p-button label="Submit" [disabled]="!categoryName || !name|| !quantity" (click)="editRowData()"></p-button>
+  </div>
+</p-dialog>
+
